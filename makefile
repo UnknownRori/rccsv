@@ -27,13 +27,26 @@ clean: setup
 test: build-test
 	$(TEST_BIN)
 
-build-test: setup build-static
+test-dll: build-test
+	cp $(RCCSV_DLL) ./temp
+	$(TEST_BIN)
+
+build-test: setup build-dll
 	$(CC) $(TEST_CASE) -o $(TEST_BIN) -L./$(DIST) $(TEST_FLAG) $(FLAG) $(DEBUG)
+
+build-test-dll: setup build-dll
+	$(CC) $(TEST_CASE) -o $(TEST_BIN) -L./$(DIST) $(TEST_FLAG) $(FLAG) $(DEBUG) -DDLL_IMPORT
 
 build: build-static
 
 build-static: setup build-obj
 	ar rcs $(RCCSV_STATICLIB) $(RCCSV_OUT)
+
+build-dll: setup build-obj
+	gcc $(RCCSV_OUT) -o $(RCCSV_DLL) -s -shared
+
+build-obj-dll: setup
+	$(CC) $(RCCSV_SRC) -c -o $(RCCSV_OUT) $(FLAG) $(DEBUG) -DDLL_EXPORT
 
 build-obj: setup
 	$(CC) $(RCCSV_SRC) -c -o $(RCCSV_OUT) $(FLAG) $(DEBUG)
