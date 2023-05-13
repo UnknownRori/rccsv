@@ -1,0 +1,48 @@
+=== rccsv ===
+
+There is no type validation, just a raw string manipulation helper
+
+Datastructure : Linked-List
+
+=== Example Data ===
+
+    Id,Name,Birth Year
+    1,UnknownRori,1438
+    2,Kawaiikaze ,1938 
+    3, Bismark, 1942
+    4, Flan , 1538 
+
+=== Basic Usage ===
+
+```
+rccsv *csv_file              = rccsv_open("myfile.csv");// Return csv file descriptor
+
+const char *headers          = rccsv_headers(csv_file)          // Return "Id,Name,Birth Year" (!) Ownership of this string is `csv_file`
+
+char *header_specfic         = rccsv_header(csv_file, 1)          // Return "Id" (!) This is dynamically allocated and the end dev should free
+char *header_specfic1        = rccsv_header(csv_file, 2)          // Return "Name" (!) This is dynamically allocated and the end dev should free
+char *header_specfic1        = rccsv_header(csv_file, 3)          // Return "Birth Year" (!) This is dynamically allocated and the end dev should free
+
+const char *datas1           = rccsv_data(csv_file, 4)            // Return "4, Flan ,1538" (!) Ownership of this string is `csv_file`
+const char *datas1_specific  = rccsv_data_get(csv_file, 1, 2)     // Return "Flan" (!) This is dynamically allocated and the end dev should free
+
+const char *datas2           = rccsv_data_pop(csv_file)         // Pop Flan and return it's pointer
+
+rccsv_save(csv_file);                                   // Save the changes
+rccsv_free(csv_file);                                   // Free up memory and close the file descriptor
+free(datas2);                                           // Don't forget to free up things you pop
+
+rccsv *new_csv              = rccsv_new("myfile.csv");  // Create new csv
+rccsv_headers_set(new_csv, "UUID,Name,Cash");                    // Set new header (since it new it doesn't have header)
+rccsv_data_push(new_csv, "1148,UnknownRori,10");                 // Push the data
+rccsv_data_push(new_csv, "2498,Kawaiikaze,1000");                // Push the data
+
+char *new_data = (char*) calloc(255, sizeof(char));
+strcpy(new_data, "1111, AAAAAAA,0");
+rccsv_data_push(new_csv, new_data);                              // The ownership become `csv_file` and you should never free it.
+
+rccsv_save(new_csv);                                    // Save the file, but will not save if the header is not set
+rccsv_free(new_csv);                                    // Free up memory and close the file descriptor
+```
+
+=== Detailed Ownership ===
