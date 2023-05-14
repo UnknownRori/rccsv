@@ -10,8 +10,9 @@
  */
 
 #include "./include/UnknownRori/rccsv.h"
+#include "./src/FILE.h"
 
 extern int hello()
 {
-    return 1;
+    return hello_world();
 }
