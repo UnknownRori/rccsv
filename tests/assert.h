@@ -30,7 +30,7 @@
     }                                                                                                  \
     else                                                                                               \
     {                                                                                                  \
-        printf("\e[1;41m[PASS]\e[0m\t%s:%d : %s\n\t%s\n", __FILENAME__, __LINE__, #__EXPRESSION, MSG); \
+        printf("\e[1;41m[FAIL]\e[0m\t%s:%d : %s\n\t%s\n", __FILENAME__, __LINE__, #__EXPRESSION, MSG); \
     }
 
 #else
