@@ -23,4 +23,4 @@ typedef struct rccsv
     char *m_data;
 } rccsv;
 
-#endif
+#endif // UNKNOWNRORI_C_RCCSV_INTERN_H

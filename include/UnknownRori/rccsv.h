@@ -30,7 +30,7 @@
 #define DLL_API
 #define DLL_API_EXPORT
 
-#endif
+#endif // DLL Export Import
 
 // Types
 typedef struct rccsv rccsv;
@@ -39,7 +39,7 @@ typedef struct rccsv rccsv;
 #ifdef __cplusplus
 extern "C"
 {
-#endif
+#endif // __cplusplus
 
     extern DLL_API rccsv DLL_API_EXPORT rccsv_open(const char *const filepath);
     extern DLL_API rccsv DLL_API_EXPORT rccsv_new(const char *const filepath);
@@ -49,11 +49,11 @@ extern "C"
     extern DLL_API char *DLL_API_EXPORT rccsv_data_get(rccsv *, const unsigned int, unsigned int);
     extern DLL_API char *DLL_API_EXPORT rccsv_data_push(rccsv *, char *);
     extern DLL_API char *DLL_API_EXPORT rccsv_data_pop(rccsv *);
-    extern DLL_API char *DLL_API_EXPORT rccsv_save(const rccsv *const filepath);
+    extern DLL_API char *DLL_API_EXPORT rccsv_save(const rccsv *const);
     extern DLL_API char *DLL_API_EXPORT rccsv_free(rccsv *);
 
 #ifdef __cplusplus
 }
-#endif
+#endif // __cplusplus
 
-#endif
+#endif // UNKNOWNRORI_C_RCCSV_H
