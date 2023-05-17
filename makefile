@@ -1,6 +1,6 @@
 CC = gcc
-FLAG = -Wall -Werror
-DEBUG = -g -DDEBUG -DCOLORED
+FLAG = -Wall -Werror -Wconversion -Wundef -Wshadow -Wdouble-promotion -fno-common -Wformat=2
+DEBUG = -g -DDEBUG -DCOLORED -fstack-usage
 
 TEMP = temp
 DIST = dist
