@@ -1,10 +1,12 @@
-#include "./assert.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
 
-extern int hello();
+#include "./test_framework.h"
 
 int main()
 {
-    ASSERT(hello() == 4, "It should be four");
 
     return 0;
 }

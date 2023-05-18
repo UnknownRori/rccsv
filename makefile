@@ -13,8 +13,13 @@ RCCSV_OUT = ./$(TEMP)/$(RCCSV).o
 RCCSV_STATICLIB = ./$(DIST)/lib$(RCCSV).a
 RCCSV_DLL = ./$(DIST)/$(RCCSV).dll # Maybe for next time
 
-WRAPPER_SRC = ./$(SRC)/FILE.c
-WRAPPER_OUT = ./$(TEMP)/wrapper.o
+WRAPPER_OUT = ./$(TEMP)/string.o ./$(TEMP)/FILE.o
+
+FILE_SRC = ./$(SRC)/FILE.c 
+FILE_OUT = ./$(TEMP)/FILE.o
+
+STRING_SRC = ./$(SRC)/string.c
+STRING_OUT = ./$(TEMP)/string.o
 
 TEST_FLAG = -l$(RCCSV)
 TEST_CASE = ./$(TEST)/unit_test.c
@@ -56,4 +61,5 @@ build-obj: setup
 	$(CC) $(RCCSV_SRC) -c -o $(RCCSV_OUT) $(FLAG) $(DEBUG)
 
 build-wrapper-obj: setup
-	$(CC) $(WRAPPER_SRC) -c -o $(WRAPPER_OUT) $(FLAG) $(DEBUG)
+	$(CC) $(STRING_SRC) -c -o $(STRING_OUT) $(FLAG) $(DEBUG)
+	$(CC) $(FILE_SRC) -c -o $(FILE_OUT) $(FLAG) $(DEBUG)

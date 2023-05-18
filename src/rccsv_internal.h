@@ -18,7 +18,6 @@
 typedef struct rccsv
 {
     FILE *m_fd;
-    char *m_file_path;
     char *m_header;
     char *m_data;
 } rccsv;

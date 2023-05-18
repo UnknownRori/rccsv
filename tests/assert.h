@@ -23,29 +23,35 @@
 
 #if defined(COLORED)
 
-#define ASSERT(__EXPRESSION, MSG)                                                                      \
-    if (__EXPRESSION)                                                                                  \
-    {                                                                                                  \
-        printf("\e[1;32m[PASS]\e[0m\t%s:%d : %s\n\t%s\n", __FILENAME__, __LINE__, #__EXPRESSION, MSG); \
-    }                                                                                                  \
-    else                                                                                               \
-    {                                                                                                  \
-        printf("\e[1;41m[FAIL]\e[0m\t%s:%d : %s\n\t%s\n", __FILENAME__, __LINE__, #__EXPRESSION, MSG); \
+#define PRINT_PASS(__EXPRESSION, MSG) printf("\e[1;32m[PASS]\e[0m\t%s:%d : %s\n\t%s\n", __FILENAME__, __LINE__, #__EXPRESSION, MSG)
+#define PRINT_FAIL(__EXPRESSION, MSG) printf("\e[1;41m[FAIL]\e[0m\t%s:%d : %s\n\t%s\n", __FILENAME__, __LINE__, #__EXPRESSION, MSG)
+
+#define ASSERT(__EXPRESSION, MSG)      \
+    if ((__EXPRESSION))                \
+    {                                  \
+        PRINT_PASS(__EXPRESSION, MSG); \
+    }                                  \
+    else                               \
+    {                                  \
+        PRINT_FAIL(__EXPRESSION, MSG); \
     }
 
-#define LOG(__MSG) fprintf(stderr, "\e[1;33m[LOG ]\e[0m\t\e[1m%s:%d\e[0m : %s\n", __FILENAME__, __LINE__, __MSG);
-#define ERR(__MSG) fprintf(stderr, "\e[1;41m[ERR ]\e[0m\t\e[1m%s:%d\e[0m : %s\n", __FILENAME__, __LINE__, __MSG);
+#define LOG(__MSG) fprintf(stderr, "\e[1;33m[LOG ]\e[0m\t\e[1m%s:%d\e[0m : %s\n", __FILENAME__, __LINE__, __MSG)
+#define ERR(__MSG) fprintf(stderr, "\e[1;41m[ERR ]\e[0m\t\e[1m%s:%d\e[0m : %s\n", __FILENAME__, __LINE__, __MSG)
 
 #else
 
-#define ASSERT(__EXPRESSION, MSG)                                                         \
-    if (__EXPRESSION)                                                                     \
-    {                                                                                     \
-        printf("[PASS]\t%s:%d : %s\n\t%s\n", __FILENAME__, __LINE__, #__EXPRESSION, MSG); \
-    }                                                                                     \
-    else                                                                                  \
-    {                                                                                     \
-        printf("[FAIL]\t%s:%d : %s\n\t%s\n", __FILENAME__, __LINE__, #__EXPRESSION, MSG); \
+#define PRINT_PASS(__EXPRESSION, MSG) printf("[PASS]\t%s:%d : %s\n\t%s\n", __FILENAME__, __LINE__, #__EXPRESSION, MSG);
+#define PRINT_FAIL(__EXPRESSION, MSG) printf("[FAIL]\t%s:%d : %s\n\t%s\n", __FILENAME__, __LINE__, #__EXPRESSION, MSG);
+
+#define ASSERT(__EXPRESSION, MSG)      \
+    if (__EXPRESSION)                  \
+    {                                  \
+        PRINT_PASS(__EXPRESSION, MSG); \
+    }                                  \
+    else                               \
+    {                                  \
+        PRINT_FAIL(__EXPRESSION, MSG); \
     }
 
 #define LOG(__MSG) fprintf(stderr, "[LOG]\t%s:%d : %s\n", __FILENAME__, __LINE__, __MSG);

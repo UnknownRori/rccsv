@@ -35,22 +35,25 @@
 // Types
 typedef struct rccsv rccsv;
 
+// Todo : Create macro for mapping to struct
+#define RCCSV_PARSE
+
 // Main Function Definition
 #ifdef __cplusplus
 extern "C"
 {
 #endif // __cplusplus
 
-    extern DLL_API rccsv DLL_API_EXPORT rccsv_open(const char *const filepath);
-    extern DLL_API rccsv DLL_API_EXPORT rccsv_new(const char *const filepath);
-    extern DLL_API char *DLL_API_EXPORT rccsv_headers(rccsv *);
-    extern DLL_API char *DLL_API_EXPORT rccsv_header(rccsv *, const unsigned int);
-    extern DLL_API char *DLL_API_EXPORT rccsv_data(rccsv *, const unsigned int);
-    extern DLL_API char *DLL_API_EXPORT rccsv_data_get(rccsv *, const unsigned int, unsigned int);
-    extern DLL_API char *DLL_API_EXPORT rccsv_data_push(rccsv *, char *);
-    extern DLL_API char *DLL_API_EXPORT rccsv_data_pop(rccsv *);
-    extern DLL_API char *DLL_API_EXPORT rccsv_save(const rccsv *const);
-    extern DLL_API char *DLL_API_EXPORT rccsv_free(rccsv *);
+    extern DLL_API rccsv *DLL_API_EXPORT rccsv_open(const char *const filepath);
+    extern DLL_API rccsv *DLL_API_EXPORT rccsv_new();
+    extern DLL_API char *DLL_API_EXPORT rccsv_headers(rccsv *fd);
+    extern DLL_API char *DLL_API_EXPORT rccsv_header(rccsv *fd, const unsigned int col);
+    extern DLL_API char *DLL_API_EXPORT rccsv_data(rccsv *fd, const unsigned int row);
+    extern DLL_API char *DLL_API_EXPORT rccsv_data_get(rccsv *fd, const unsigned int row, unsigned int col);
+    extern DLL_API char *DLL_API_EXPORT rccsv_data_push(rccsv *fd, char *chunk);
+    extern DLL_API char *DLL_API_EXPORT rccsv_data_pop(rccsv *fd);
+    extern DLL_API char *DLL_API_EXPORT rccsv_save(const rccsv *const fd, const char *const filepath);
+    extern DLL_API char *DLL_API_EXPORT rccsv_free(rccsv *fd);
 
 #ifdef __cplusplus
 }
