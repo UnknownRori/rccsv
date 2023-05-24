@@ -14,7 +14,7 @@
 #ifndef UNKNOWNRORI_TEST_FRAMEWORK_H
 #define UNKNOWNRORI_TEST_FRAMEWORK_H
 
-#include <assert.h>
+#include "./assert.h"
 
 typedef struct test_result
 {
@@ -25,11 +25,11 @@ typedef struct test_result
 
 #define TEST_CASE_REGISTER(_FUNC)                                                                                        \
     {                                                                                                                    \
-        test_result _result = _FUNC(#_FUNC);                                                                             \
+        test_result _result = test_##_FUNC("test_" #_FUNC);                                                              \
         if (_result.m_total == _result.m_success)                                                                        \
             fprintf(stderr, "\t\e[1;32m[PASS]\e[0m %s [%d/%d]\n\n", _result.m_name, _result.m_total, _result.m_success); \
         else                                                                                                             \
-            fprintf(stderr, "\t\e[1;42m[FAIL]\e[0m %s [%d/%d]\n\n", _result.m_name, _result.m_total, _result.m_success); \
+            fprintf(stderr, "\t\e[1;41m[FAIL]\e[0m %s [%d/%d]\n\n", _result.m_name, _result.m_total, _result.m_success); \
     }
 
 #define TEST_CASE(_NAME) test_result test_##_NAME(const char *__TEST_CASE_NAME)
