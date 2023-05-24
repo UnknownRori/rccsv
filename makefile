@@ -18,9 +18,6 @@ WRAPPER_OUT = ./$(TEMP)/string.o ./$(TEMP)/FILE.o
 FILE_SRC = ./$(SRC)/FILE.c 
 FILE_OUT = ./$(TEMP)/FILE.o
 
-STRING_SRC = ./$(SRC)/string.c
-STRING_OUT = ./$(TEMP)/string.o
-
 TEST_FLAG = -l$(RCCSV)
 TEST_CASE = ./$(TEST)/unit_test.c
 TEST_BIN = ./$(TEMP)/test
@@ -61,5 +58,4 @@ build-obj: setup
 	$(CC) $(RCCSV_SRC) -c -o $(RCCSV_OUT) $(FLAG) $(DEBUG)
 
 build-wrapper-obj: setup
-	$(CC) $(STRING_SRC) -c -o $(STRING_OUT) $(FLAG) $(DEBUG)
 	$(CC) $(FILE_SRC) -c -o $(FILE_OUT) $(FLAG) $(DEBUG)
