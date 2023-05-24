@@ -17,6 +17,6 @@
 #include <stdio.h>
 #include "./types.h"
 
-char *readline(FILE *fp, usize buffer_max);
+char *readline(FILE *fp);
 
 #endif // UNKNOWNRORI_FILE_H
