@@ -23,6 +23,7 @@ typedef struct test_result
     int m_success;
 } test_result;
 
+// Register test case
 #define TEST_CASE_REGISTER(_FUNC)                                                                                        \
     {                                                                                                                    \
         test_result _result = test_##_FUNC("test_" #_FUNC);                                                              \
@@ -32,14 +33,17 @@ typedef struct test_result
             fprintf(stderr, "\t\e[1;41m[FAIL]\e[0m %s [%d/%d]\n\n", _result.m_name, _result.m_total, _result.m_success); \
     }
 
+// Create a test case
 #define TEST_CASE(_NAME) test_result test_##_NAME(const char *__TEST_CASE_NAME)
 
+// Initialize test case function
 #define TEST_CASE_INIT()                                   \
     test_result _TEST_FRAMEWORK_TEST_RESULT;               \
     _TEST_FRAMEWORK_TEST_RESULT.m_name = __TEST_CASE_NAME; \
     _TEST_FRAMEWORK_TEST_RESULT.m_total = 0;               \
     _TEST_FRAMEWORK_TEST_RESULT.m_success = 0;
 
+// Assert the behavior
 #define TEST_CASE_EXPECT(__EXPRESSION, __MSG)           \
     {                                                   \
         _TEST_FRAMEWORK_TEST_RESULT.m_total += 1;       \
@@ -52,6 +56,7 @@ typedef struct test_result
             PRINT_FAIL(__EXPRESSION, __MSG);            \
     }
 
+// Clean up the test case function
 #define TEST_CASE_DONE() \
     return _TEST_FRAMEWORK_TEST_RESULT;
 
