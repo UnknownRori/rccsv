@@ -13,7 +13,7 @@ RCCSV_OUT = ./$(TEMP)/$(RCCSV).o
 RCCSV_STATICLIB = ./$(DIST)/lib$(RCCSV).a
 RCCSV_DLL = ./$(DIST)/$(RCCSV).dll # Maybe for next time
 
-WRAPPER_OUT = ./$(TEMP)/string.o ./$(TEMP)/FILE.o
+WRAPPER_OUT = ./$(TEMP)/FILE.o
 
 FILE_SRC = ./$(SRC)/FILE.c 
 FILE_OUT = ./$(TEMP)/FILE.o
