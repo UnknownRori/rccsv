@@ -31,7 +31,7 @@ extern DLL_API rccsv *DLL_API_EXPORT rccsv_open(const char *const filepath)
         return nullptr;
 
     tmp->m_fd = fd;
-    // tmp->m_header = readline(fd, RCCSV_BUFFER_SIZE);
+    tmp->m_header = readline(fd);
 
     return tmp;
 }
@@ -46,9 +46,9 @@ extern DLL_API rccsv *DLL_API_EXPORT rccsv_new()
     return tmp;
 }
 
-extern DLL_API char *DLL_API_EXPORT rccsv_headers(rccsv *)
+extern DLL_API char *DLL_API_EXPORT rccsv_headers(rccsv *fd)
 {
-    return nullptr;
+    return fd->m_header;
 }
 
 extern DLL_API char *DLL_API_EXPORT rccsv_header(rccsv *, const unsigned int)
