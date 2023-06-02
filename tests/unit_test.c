@@ -7,6 +7,8 @@
 
 #include "../src/FILE.h"
 
+#define TEST_DIR_APPEND(_PATH) "./tests/data/" _PATH
+
 TEST_CASE(read_entire_line);
 
 int main(int argc, char **argv)
@@ -20,7 +22,7 @@ TEST_CASE(read_entire_line)
 {
     TEST_CASE_INIT()
 
-    FILE *fp = fopen("./tests/data/dummy.txt", "r");
+    FILE *fp = fopen(TEST_DIR_APPEND("dummy.txt"), "r");
 
     TEST_CASE_EXPECT(fp != nullptr, "It should open the file");
 
