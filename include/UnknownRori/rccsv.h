@@ -53,7 +53,7 @@ extern "C"
     extern DLL_API char *DLL_API_EXPORT rccsv_data_push(rccsv *fd, char *chunk);
     extern DLL_API char *DLL_API_EXPORT rccsv_data_pop(rccsv *fd);
     extern DLL_API char *DLL_API_EXPORT rccsv_save(const rccsv *const fd, const char *const filepath);
-    extern DLL_API char *DLL_API_EXPORT rccsv_free(rccsv *fd);
+    extern DLL_API void DLL_API_EXPORT rccsv_free(rccsv *fd);
 
 #ifdef __cplusplus
 }
