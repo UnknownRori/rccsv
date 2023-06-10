@@ -38,11 +38,14 @@ get_line_status static inline __getline__(FILE *fp, char *buffer, size_t max);
  */
 char *readline(FILE *fp)
 {
+    if (feof(fp))
+        return nullptr;
+
     char buffer[FILE_BUFFER];
 
     // It won't properly copy entire line, since it's will stop if it get too full
     // but it should work for now
-    // Todo : Properly copy the entire line without caring the max buffer size
+    // TODO : Properly copy the entire line without caring the max buffer size
     __getline__(fp, buffer, FILE_BUFFER);
 
     size_t len = strnlen(buffer, FILE_BUFFER);
