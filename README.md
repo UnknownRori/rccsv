@@ -6,18 +6,21 @@ Cross Platform(?) Helper library for manipulating `csv` file in C, and not very 
 
 ```bash
 # clone repository
-> git clone https://github.com/UnknownRori/rccsv
+git clone https://github.com/UnknownRori/rccsv
 
 # create static library
-> make build-static
+make build-static
 
 # run test
-> make test
+make test
+
+# clean up
+make clean
 ```
 
 ## 🚀 Usage
 
-Still in development
+Still in development, you might want to see the `design/notes.txt`.
 
 ## 🌟 Contribution
 
