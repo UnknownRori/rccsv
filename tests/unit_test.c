@@ -30,10 +30,18 @@ TEST_CASE(read_entire_line)
     TEST_CASE_EXPECT(fp != nullptr, "It should open the file");
 
     char *result = readline(fp);
+    char *result2 = readline(fp);
+    char *result3 = readline(fp);
+    char *result4 = readline(fp);
 
     TEST_CASE_EXPECT(strcmp(result, "AAAA") == 0, "It should be the same thing");
+    TEST_CASE_EXPECT(strcmp(result2, "BBBB") == 0, "It should be the same thing");
+    TEST_CASE_EXPECT(strcmp(result3, "CCCC") == 0, "It should be the same thing");
+    TEST_CASE_EXPECT(result4 == nullptr, "It should empty");
 
     free(result);
+    free(result2);
+    free(result3);
 
     TEST_CASE_DONE()
 }
