@@ -32,18 +32,14 @@ extern DLL_API rccsv *DLL_API_EXPORT rccsv_open(const char *const filepath)
 
     tmp->m_fd = fd;
     tmp->m_header = readline(fd);
+    tmp->m_data = nullptr;
 
     return tmp;
 }
 
 extern DLL_API rccsv *DLL_API_EXPORT rccsv_new()
 {
-    rccsv *tmp = make(rccsv, 1);
-
-    if (tmp == nullptr)
-        return nullptr;
-
-    return tmp;
+    return make(rccsv, 1);
 }
 
 extern DLL_API char *DLL_API_EXPORT rccsv_headers(rccsv *fd)
@@ -81,7 +77,10 @@ extern DLL_API char *DLL_API_EXPORT rccsv_save(const rccsv *const fd, const char
     return nullptr;
 }
 
-extern DLL_API char *DLL_API_EXPORT rccsv_free(rccsv *)
+extern DLL_API void DLL_API_EXPORT rccsv_free(rccsv *fd)
 {
-    return nullptr;
+    fclose(fd->m_fd);
+    free(fd->m_data);
+    free(fd->m_header);
+    free(fd);
 }
